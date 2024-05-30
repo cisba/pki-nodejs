@@ -43,6 +43,10 @@ With the public Certificates you can verify the TimeStampRequest.
 
     $ openssl ts -verify -in file.tsr -queryfile file.tsq -CAfile cacert.pem -untrusted tsa.crt
 
+### Other Free TSA
+
+[info](https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710)
+
 
 ### Install openssl-nodejs wrapper
 
@@ -51,6 +55,10 @@ With the public Certificates you can verify the TimeStampRequest.
     npm install openssl-nodejs
 
 
+### Send TSRequest using tls/https?
+
+    WIP
+
 ### Install PKI.js
 
 [info](https://github.com/PeculiarVentures/PKI.js)
@@ -58,7 +66,7 @@ With the public Certificates you can verify the TimeStampRequest.
     npm install pkijs
 
 
-### Implement same workflow using Node.js and PKI.js library to request a Time Stamp to FreeTSA
+### Implement same workflow using Node.js and PKI.js library
 
 [info](https://github.com/PeculiarVentures/PKI.js/tree/master/examples/TSPRequestComplexExample)
 
