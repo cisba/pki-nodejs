@@ -19,8 +19,11 @@ data = fs.readFile('example.txt', 'utf8', (err, data) => {
 ******************/
 const openssl = require('openssl-nodejs');
 
-//openssl('openssl ts -query -data file.png -no_nonce -sha512 -cert -out file.tsq')
+// CLI
+// openssl rand 512 | openssl ts -query -data - -cert -sha512 | curl -s -S --data-binary @- https://rfc3161.ai.moda -o - -v | xxd | head -20
 
+// example
+//openssl('openssl ts -query -data file.png -no_nonce -sha512 -cert -out file.tsq')
 
 //openssl(['ts', '-query', '-data', { name:'file.dat', buffer: data }, '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq']);
 openssl(['ts', '-query', '-data', 'example.txt', '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq'], function (err, buffer) {

@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 
 
-fs.readFile('openssl/file.tsq', 'binary', (err, data) => {
+fs.readFile('./file.tsq', 'binary', (err, data) => {
   if (err) {
     console.error(err);
     return;
@@ -14,9 +14,12 @@ fs.readFile('openssl/file.tsq', 'binary', (err, data) => {
 
 function sendRequest(TSRequest) { 
 	console.log("TSRequest Length: " + TSRequest.length); 
+	console.log("TSRequest Buffer.byteLength: " + Buffer.byteLength(TSRequest));
 
 	const https = require('node:https');
 
+	// the following CLI request works:
+	// curl -H "Content-Type: application/timestamp-query" --data-binary '@file.tsq' https://rfc3161.ai.moda > file.tsr
 	const post_options = {
 		//hostname: 'freetsa.org',
 		//path: '/tsr',
@@ -26,12 +29,12 @@ function sendRequest(TSRequest) {
 		//path: 'tsa/get.aspx',
 		hostname: 'rfc3161.ai.moda',
 		port: 443,
-		method: 'POST',
+		//method: 'POST',
 		//auth: 'user:password',
 		headers: {
           		'Content-Type': 'application/timestamp-query',
 			//'Content-Length': TSRequest.length
-			//'Content-Length': Buffer.byteLength(TSRequest)
+			'Content-Length': Buffer.byteLength(TSRequest)
 		},
 	};
 	console.log("Headers: " + JSON.stringify(post_options)); 
@@ -39,7 +42,7 @@ function sendRequest(TSRequest) {
 	// Set up the request
 	var post_req = https.request(post_options, function(res) {
 		//res.setEncoding('utf8');
-		res.setEncoding('binary');
+		//res.setEncoding('binary');
 	    	res.on('data', function (chunk) {
 			console.log('Response: ' + chunk);
 	    	});
