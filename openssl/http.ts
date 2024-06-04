@@ -15,20 +15,14 @@ fs.readFile('./file.tsq', (err, data) => {
 function sendRequest(TSRequest) { 
 	console.log("TSRequest Length: " + TSRequest.length); 
 
-	const https = require('node:https');
+	const http = require('node:http');
 
 	const post_options = {
-		//hostname: 'freetsa.org',
-		//path: '/tsr',
-		//hostname: 'tsp.iaik.tugraz.at',
-		//path: '/tsp/TspRequest',
-		//hostname: 'ca.signfiles.com',
-		//path: 'tsa/get.aspx',
 		hostname: 'rfc3161.ai.moda',
-		port: 443,
+		port: 80,
 		method: 'POST',
+		path: '/',
 		//auth: 'user:password',
-		encoding: null,
 		headers: {
 			//'Host': 'rfc3161.ai.moda',
 			//'User-Agent': 'curl/7.88.1',
@@ -41,9 +35,10 @@ function sendRequest(TSRequest) {
 	console.log("Headers: " + JSON.stringify(post_options)); 
 
 	// Set up the request
-	var post_req = https.request(post_options, function(res) {
+	var post_req = http.request(post_options, function(res) {
 	    	res.on('data', function (chunk) {
 			console.log('Response: ' + chunk.length);
+			// TODO: write to a file
 	    	});
 	});
 

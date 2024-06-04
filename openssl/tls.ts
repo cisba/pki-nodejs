@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 
 
-fs.readFile('openssl/file.tsq', 'binary', (err, data) => {
+fs.readFile('openssl/file.tsq', (err, data) => {
   if (err) {
     console.error(err);
     return;
