@@ -15,20 +15,24 @@ function sendRequest(TSRequest) {
 
 	const https = require('node:https');
 
+	// the following CLI request works:
+	// curl -H "Content-Type: application/timestamp-query" --data-binary '@file.tsq' http://rfc3161.ai.moda > file.tsr
 	const post_options = {
-		hostname: 'freetsa.org',
-		path: '/tsr',
-		//hostname: 'tsp.iaik.tugraz.at',
-		//path: '/tsp/TspRequest',
-		//hostname: 'ca.signfiles.com',
-		//path: 'tsa/get.aspx',
-		//hostname: 'rfc3161.ai.moda',
-		port: 443,
+		hostname: '127.0.01',
+		port: 8080,
 		method: 'POST',
+		//path: 'https://rfc3161.ai.moda',
+		path: 'https://freetsa.org/tsr',
 		//auth: 'user:password',
+		rejectUnauthorized: false,
 		headers: {
+			//'Host': 'freetsa.org',
+			//'Host': 'rfc3161.ai.moda',
+			//'User-Agent': 'curl/7.88.1',
+			//'Accept': '*/*',
+			//'Proxy-Connection': 'Keep-Alive',
           		'Content-Type': 'application/timestamp-query',
-			'Content-Length': TSRequest.length,
+			'Content-Length': Buffer.byteLength(TSRequest),
 		},
 	};
 	console.log("Headers: " + JSON.stringify(post_options)); 
@@ -40,7 +44,7 @@ function sendRequest(TSRequest) {
 	    	});
 	});
 
-	// post the TSRequest
+	// post the data
 	post_req.write(TSRequest);
 	post_req.end();
 

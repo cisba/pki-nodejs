@@ -25,7 +25,9 @@ function sendRequest(TSRequest) {
 	}
 	console.log("Options: " + JSON.stringify(options)); 
 
-	needle.post('https://rfc3161.ai.moda', TSRequest, options, function(err, resp) {
+	//const tsa = 'https://rfc3161.ai.moda'
+	const tsa = 'https://freetsa.org/tsr'
+	needle.post(tsa, TSRequest, options, function(err, resp) {
 		if (err)
 			console.log('Shoot! Something is wrong: ' + err.message)
 		else
