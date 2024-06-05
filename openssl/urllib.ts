@@ -1,20 +1,23 @@
 
 const fs = require('node:fs');
 
+const post = require('./httpclient.cjs');
 
 fs.readFile('./file.tsq', (err, data) => {
   if (err) {
     console.error(err);
     return;
   }
-  sendRequest(data);
+  post(data);
 });
 
 
-function sendRequest(TSRequest) { 
+
+/*
+	function sendRequest(TSRequest) { 
 	console.log("TSRequest Buffer.byteLength: " + Buffer.byteLength(TSRequest));
 
-	// $ npm install urllibe
+	// $ npm install urllib
 	const request = require('urllib');
 
 	var options = {
@@ -31,17 +34,21 @@ function sendRequest(TSRequest) {
 	const tsa = 'https://rfc3161.ai.moda'
 	//const tsa = 'https://freetsa.org/tsr'
 	console.log("TSA: " + tsa); 
-	const { data, res } = await request{ tsa, options };
+	
+	//const { data, res } = await request{ tsa, options };
+	var post = request( tsa, options, function(data, res) { 
 
-	// result: { data: Buffer, res: Response }
-	console.log('status: %s, body size: %d, headers: %j', res.status, data.length, res.headers);
+		// result: { data: Buffer, res: Response }
+		console.log('status: %s, body size: %d, headers: %j', res.status, data.length, res.headers);
 
-	fs.writeFile('file.tsr', data, err => {
-		if (err) {
-			console.error(err);
-		} else {
-			console.log('file.tsr written successfully');
-		}
+		fs.writeFile('file.tsr', data, err => {
+			if (err) {
+				console.error(err);
+			} else {
+				console.log('file.tsr written successfully');
+			}
+		});
 	});
 
 }
+*/

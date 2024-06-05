@@ -2,6 +2,7 @@
   "dependencies": {
     "needle": "^3.3.1",
     "openssl-nodejs": "^1.0.5",
-    "pkijs": "^3.0.16"
+    "pkijs": "^3.0.16",
+    "urllib": "^3.25.1"
   }
 }
