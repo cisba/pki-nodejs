@@ -57,6 +57,8 @@ With the public Certificates you can verify the TimeStampRequest.
 
 ### Send TSRequest using https
 
+    npm install urllib
+
     ***WIP***
 
 
