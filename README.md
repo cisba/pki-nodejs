@@ -55,18 +55,16 @@ With the public Certificates you can verify the TimeStampRequest.
     npm install openssl-nodejs
 
 
-### Send TSRequest using tls/https?
+### Send TSRequest using https
 
-    WIP
+    ***WIP***
 
-### Install PKI.js
+
+### Extract TST from TSR?
 
 [info](https://github.com/PeculiarVentures/PKI.js)
 
     npm install pkijs
-
-
-### Implement same workflow using Node.js and PKI.js library
 
 [info](https://github.com/PeculiarVentures/PKI.js/tree/master/examples/TSPRequestComplexExample)
 

@@ -27,8 +27,8 @@ const openssl = require('openssl-nodejs');
 
 //openssl(['ts', '-query', '-data', { name:'file.dat', buffer: data }, '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq']);
 openssl(['ts', '-query', '-data', 'example.txt', '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq'], function (err, buffer) {
-	console.log(err.toString(), buffer.toString());
-	});
+    console.log(err.toString(), buffer.toString());
+});
 
 /***************** 
  Send TS Request
