@@ -19,6 +19,9 @@ verifies the right NPM version is in the environment
 
     npm -v # should print `10.5.2`
 
+install typescript
+
+    npm install -g typescript
 
 ### Test with Hello World example
 
