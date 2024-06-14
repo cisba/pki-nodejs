@@ -46,6 +46,12 @@ With the public Certificates you can verify the TimeStampRequest.
 
     $ openssl ts -verify -in file.tsr -queryfile file.tsq -CAfile cacert.pem -untrusted tsa.crt
 
+Extract the Time Stamp Token from the reply
+    $ openssl ts -reply -in file.tsr -token_out -out file.tst
+
+Extract the time stamp string from the token
+    $ openssl ts -reply -in file.tsr -text
+
 ### Other Free TSA
 
 [info](https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710)
