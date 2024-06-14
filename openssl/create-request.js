@@ -9,10 +9,16 @@ data = fs.readFile('example-files/example.txt', 'utf8', (err, data) => {
     console.error(err);
     return;
   }
-  console.log(data);
+//  console.log(data);
   return data
 });
  
+// Create openssl dir
+var dir = './openssl';
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
 
 /***************** 
  Create TS Request
@@ -26,7 +32,7 @@ const openssl = require('openssl-nodejs');
 //openssl('openssl ts -query -data file.png -no_nonce -sha512 -cert -out file.tsq')
 
 //openssl(['ts', '-query', '-data', { name:'file.dat', buffer: data }, '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq']);
-openssl(['ts', '-query', '-data', 'example.txt', '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq'], function (err, buffer) {
+openssl(['ts', '-query', '-data', 'example-files/example.txt', '-no_nonce', '-sha512', '-cert', '-out', 'file.tsq'], function (err, buffer) {
     console.log(err.toString(), buffer.toString());
 });
 

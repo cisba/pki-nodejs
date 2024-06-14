@@ -3,7 +3,7 @@ const fs = require('node:fs');
 
 const post = require('./httpclient.cjs');
 
-fs.readFile('./file.tsq', (err, data) => {
+fs.readFile('./openssl/file.tsq', (err, data) => {
   if (err) {
     console.error(err);
     return;

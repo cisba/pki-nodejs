@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 
 
-fs.readFile('./file.tsq', (err, data) => {
+fs.readFile('./openssl/file.tsq', (err, data) => {
   if (err) {
     console.error(err);
     return;
@@ -37,6 +37,14 @@ function sendRequest(TSRequest) {
 	var post_req = https.request(post_options, function(res) {
 	    	res.on('data', function (chunk) {
 			console.log('Response: ' + chunk.length);
+
+			fs.writeFile('openssl/file.tsr', chunk, err => {
+				if (err) {
+					console.error(err);
+				} else {
+					console.log('file.tsr written successfully');
+				}
+			});
 	    	});
 	});
 
