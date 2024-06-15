@@ -30,15 +30,21 @@ function sendRequest(TSRequest) {
           		'Content-Type': 'application/timestamp-query',
 			'Content-Length': TSRequest.length,
 		},
+		timeout: 10000,
 	};
 	console.log("Headers: " + JSON.stringify(post_options)); 
 
 	// Set up the request
 	var post_req = https.request(post_options, function(res) {
+		const { Buffer } = require('node:buffer');
+		var body = Buffer.alloc(0);
 	    	res.on('data', function (chunk) {
-			console.log('Response: ' + chunk.length);
+			body = Buffer.concat([body, chunk], body.length + chunk.length);
+		});
+	    	res.on('end', function () {
+			console.log('Response: ' + body.length);
 
-			fs.writeFile('openssl/file.tsr', chunk, err => {
+			fs.writeFile('openssl/file.tsr', body, "binary", err => {
 				if (err) {
 					console.error(err);
 				} else {
