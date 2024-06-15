@@ -16,13 +16,13 @@ function sendRequest(TSRequest) {
 	const https = require('node:https');
 
 	const post_options = {
-		hostname: 'freetsa.org',
-		path: '/tsr',
+		//hostname: 'freetsa.org',
+		//path: '/tsr',
 		//hostname: 'tsp.iaik.tugraz.at',
 		//path: '/tsp/TspRequest',
 		//hostname: 'ca.signfiles.com',
 		//path: 'tsa/get.aspx',
-		//hostname: 'rfc3161.ai.moda',
+		hostname: 'rfc3161.ai.moda',
 		port: 443,
 		method: 'POST',
 		//auth: 'user:password',
@@ -55,7 +55,9 @@ function sendRequest(TSRequest) {
 	});
 
 	// post the TSRequest
+	console.log(Date());
 	post_req.write(TSRequest);
 	post_req.end();
+	console.log(Date());
 
 }
