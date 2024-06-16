@@ -4,5 +4,11 @@
     "openssl-nodejs": "^1.0.5",
     "pkijs": "^3.0.16",
     "urllib": "^3.25.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "eslint": "^9.5.0",
+    "globals": "^15.5.0",
+    "typescript-eslint": "^7.13.0"
   }
 }
