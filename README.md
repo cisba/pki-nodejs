@@ -29,6 +29,11 @@ install typescript
 
     node helloworld.js
 
+### Install openssl-nodejs wrapper
+
+[info](https://www.npmjs.com/package/openssl-nodejs)
+
+    npm install openssl-nodejs
 
 ### Example workflow using CLI openssl to request a Time Stamp to FreeTSA
 
@@ -52,33 +57,17 @@ Extract the Time Stamp Token from the reply
 Extract the time stamp string from the token
     $ openssl ts -reply -in file.tsr -text
 
+### Verify
+
+[info](https://weisser-zwerg.dev/posts/trusted_timestamping/)
+
+    openssl dgst -sha3-256 state.txt
+    openssl ts -verify -digest e22171694fd8e4240550f995c558bcc967b3df0e928b51a746b2cba26f6d9ea4 -in ts_req.tsr -CAfile AppleTimestampCA.cer -partial_chain
+
 ### Other Free TSA
 
 [info](https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710)
 
 
-### Install openssl-nodejs wrapper
-
-[info](https://www.npmjs.com/package/openssl-nodejs)
-
-    npm install openssl-nodejs
-
-
-### Send TSRequest using https
-
-    npm install urllib
-
-    ***WIP***
-
-
-### Extract TST from TSR?
-
-[info](https://github.com/PeculiarVentures/PKI.js)
-
-    npm install pkijs
-
-[info](https://github.com/PeculiarVentures/PKI.js/tree/master/examples/TSPRequestComplexExample)
-
-    ***TBD***
 
 ### END
