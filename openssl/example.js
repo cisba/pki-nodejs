@@ -21,8 +21,10 @@ console.log(bufdata.length);
 ******************/
 const TSA = require('./timestamp.ts');
 
-let tsa = new TSA("Questa è la mia configurazione");
+let tsa = new TSA("Questo è un url", "Questa è un'auth");
 
-tsa.getTimestamp("Questi sono i miei dati", function(err, token) {
+tsa.getTimestamp("Questi sono i miei dati", function(err, token, timestring) {
+	console.log("Questo è l'errore ricevuto: " + err)
 	console.log("Questo è il token ricevuto: " + token)
+	console.log("Questa è la stringa ricevuta: " + timestring)
 });
