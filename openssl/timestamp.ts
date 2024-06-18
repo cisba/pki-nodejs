@@ -29,92 +29,34 @@ module.exports = class TSA {
 		console.log("This is your config: " + JSON.stringify(this));
 	}
 
-	getTimestamp ( data, callback ) {
-		const { Buffer } = require('node:buffer');
-		//const fs = require('node:fs');
-		const openssl = require('openssl-nodejs');
+	setupQuery(data) {
+		return new Promise((resolve, reject) => {
+			setTimeout(function () {
+			      console.log('Fast function done')
+			      resolve("risultato")
+			}, 100)
+		})
+	}
 
+	getTimestamp ( data, callback ) {
 		console.log("This is your data: " + data);
 
+		this.query = this.setupQuery(data).then((result) => {
+		    	console.log(result)
+		      	return result
+		}).catch(console.log.bind(console))
+		console.log("Fine:" + JSON.stringify(this.query))
+			
 
-		function getQuery ( buffer, callback ) {
-			const { Buffer } = require('node:buffer');
-			var body = Buffer.from(buffer[0]);
-			console.log('Query length: ' + body.length);
-			this.query = body;
-
-			callback(undefined, "TOKEN", "TIMESTRING");
-		}
-
-
-		// create query from data
-		var bufdata = Buffer.from(data);
-		openssl(['ts', '-query', '-config', 'openssl.cnf', '-data', 
-			{ name: 'file.dat', buffer: bufdata }, '-no_nonce', 
-			'-sha512', '-cert' ], function(err,buffer){
-				if (err) console.error(err.toString());
-				getQuery(buffer,callback);
-			});
-	}
-/*
-		// setup https post options and headers
-		const https = require('node:https');
-
-		const post_options = {
-			hostname: 'freetsa.org',
-			path: '/tsr',
-			//hostname: 'tsp.iaik.tugraz.at',
-			//path: '/tsp/TspRequest',
-			//hostname: 'ca.signfiles.com',
-			//path: 'tsa/get.aspx',
-			//hostname: 'rfc3161.ai.moda',
-			port: 443,
-			method: 'POST',
-			//auth: 'user:password'.base64(),
-			headers: {
-				'Content-Type': 'application/timestamp-query',
-//				'Content-Length': Buffer.byteLength(this.query),
-			},
-			timeout: 10000,
-		};
-		console.log("Post Options: " + JSON.stringify(post_options)); 
-
-		// setup request to TSA
-		var post_req = https.request(post_options, function(res) {
-			const { Buffer } = require('node:buffer');
-			var body = Buffer.alloc(0);
-			res.on('data', function (chunk) {
-				body = Buffer.concat([body, chunk], body.length + chunk.length);
-			});
-			res.on('error', function(err) {
-				// Handle error
-				console.log(err)
-			});
-			res.on('uncaughtException', function(err) {
-				// Handle error
-				console.log(err)
-			});
-			res.on('end', function () {
-				console.log('Response: ' + body.length);
-
-				fs.writeFile('openssl/file.tsr', body, "binary", err => {
-					if (err) {
-						console.error(err);
-					} else {
-						console.log('file.tsr written successfully');
-					}
-				});
-			});
-		});
-
-		// post the query
-		console.log(Date());
-		post_req.write(this.query);
-		post_req.end();
-		console.log(Date());
-
+/*		return this.setupQuery(data)
+		    //.then(postHttps)
+		    //.then(getString)
+		    //.then(getToken)
+		    .then((result) => {
+		      console.log(result)
+		      return result
+		    })
+		    .catch(console.log.bind(console))
 */
-
-		// END
-	
+	}
 }
