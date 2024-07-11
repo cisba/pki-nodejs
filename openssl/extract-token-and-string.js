@@ -16,5 +16,11 @@ openssl(['ts', '-config', 'openssl.cnf', '-reply', '-in', 'file.tsr', '-token_ou
 
 
 openssl(['ts', '-config', 'openssl.cnf', '-reply', '-in', 'file.tsr', '-text'], function (err, buffer) {
-    console.log(err.toString(), buffer.toString());
+	var rx = /^Time stamp: (.*)$/gm;
+	var arr = rx.exec(buffer.toString());
+	var dateAsISOString = new Date(Date.parse(arr[1])).toISOString();
+    //console.log(err.toString(), buffer.toString());
+	console.log(err.toString(), dateAsISOString);
+
 });
+
